@@ -4,13 +4,9 @@ local TEMPLATE_FOLDER = "~/.config/nvim-templates/"
 
 local function loadTemplate(templatePath)
 	vim.notify(templatePath, vim.log.levels.INFO, {})
-	local fh = io.open(templatePath)
 	local lines = {}
-	if fh == nil then
-		return vim.notify("cannot open file" .. templatePath, vim.log.levels.INFO, {})
-	end
 
-	for line in fh:lines() do
+	for line in vim.fn.readfile(templatePath) do
 		vim.notify(type(line), vim.log.levels.INFO, {})
 		if type(line) == "table" then
 			for _, l in ipairs(line) do
@@ -20,7 +16,6 @@ local function loadTemplate(templatePath)
 			lines[#lines + 1] = line
 		end
 	end
-	fh:close()
 	vim.notify(lines[0], vim.log.levels.INFO, {})
 
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
