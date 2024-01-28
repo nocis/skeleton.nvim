@@ -1,6 +1,6 @@
 local M = {}
 
-local TEMPLATE_FOLDER = vim.fn.stdpath("config") .. "/lua/plugins/templates"
+local TEMPLATE_FOLDER = "~/.config/nvim-templates/"
 
 local function loadTemplate(templatePath)
 	local fh = io.open(templatePath)
