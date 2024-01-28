@@ -10,6 +10,7 @@ local function loadTemplate(templatePath)
 	end
 
 	for line in fh:lines() do
+		vim.notify(type(line), vim.log.levels.INFO, {})
 		if type(line) == "table" then
 			for _, l in ipairs(line) do
 				lines[#lines + 1] = l
@@ -19,6 +20,7 @@ local function loadTemplate(templatePath)
 		end
 	end
 	fh:close()
+	vim.notify(lines[0], vim.log.levels.INFO, {})
 
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
 end
