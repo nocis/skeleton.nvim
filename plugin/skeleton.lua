@@ -1,6 +1,6 @@
 vim.api.nvim_create_user_command("TemplateInit", function(opts)
 	local bufname = vim.api.nvim_buf_get_name(0)
-	local filetype = vim.filetype.match({ filename = bufname })
+	local filetype = vim.filetype.match({ buf = 0 })
 
 	vim.notify("not empty file" .. bufname, vim.log.levels.INFO, {})
 	require("skeleton").runOnCurrentBuffer(filetype)
