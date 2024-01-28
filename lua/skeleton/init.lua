@@ -3,10 +3,12 @@ local M = {}
 local TEMPLATE_FOLDER = "~/.config/nvim-templates/"
 
 local function loadTemplate(templatePath)
+	vim.notify(templatePath, vim.log.levels.INFO, {})
 	local fh = io.open(templatePath)
 	local lines = {}
 	if fh == nil then
-		return
+		return 
+vim.notify("cannot open file" .. templatePath, vim.log.levels.INFO, {})
 	end
 
 	for line in fh:lines() do
