@@ -15,7 +15,11 @@ local function loadTemplate(templatePath)
 	local fh = io.open(resolvedPath)
 	local lines = {}
 	if fh == nil then
-		return vim.notify("cannot open file" .. vim.fn.getftype(templatePath) .. resolvedPath, vim.log.levels.INFO, {})
+		return vim.notify(
+			"cannot open file: " .. vim.fn.getftype(templatePath) .. resolvedPath,
+			vim.log.levels.INFO,
+			{}
+		)
 	end
 
 	for line in fh:lines() do
