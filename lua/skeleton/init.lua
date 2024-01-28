@@ -4,7 +4,7 @@ local TEMPLATE_FOLDER = "~/.config/nvim-templates/"
 
 local function loadTemplate(templatePath)
 	vim.notify(templatePath, vim.log.levels.INFO, {})
-	local expandPath = vim.fn.expand(templatePathe)
+	local expandPath = vim.fn.expand(templatePathe .. ":p")
 	vim.notify(expandPath, vim.log.levels.INFO, {})
 	local resolvedPath
 
