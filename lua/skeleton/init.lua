@@ -5,6 +5,7 @@ local TEMPLATE_FOLDER = "~/.config/nvim-templates/"
 local function loadTemplate(templatePath)
 	vim.notify(templatePath, vim.log.levels.INFO, {})
 	local expandPath = vim.fn.expand(templatePathe)
+	vim.notify(expandPath, vim.log.levels.INFO, {})
 	local resolvedPath
 
 	if vim.fn.getftype(expandPath) == "link" then
