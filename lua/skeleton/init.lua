@@ -7,8 +7,7 @@ local function loadTemplate(templatePath)
 	local fh = io.open(templatePath)
 	local lines = {}
 	if fh == nil then
-		return 
-vim.notify("cannot open file" .. templatePath, vim.log.levels.INFO, {})
+		return vim.notify("cannot open file" .. templatePath, vim.log.levels.INFO, {})
 	end
 
 	for line in fh:lines() do
@@ -33,7 +32,7 @@ function M.runOnCurrentBuffer(filetype)
 		return
 	end
 
-	local abspath = TEMPLATE_FOLDER .. "/" .. filetype .. ".template"
+	local abspath = TEMPLATE_FOLDER .. filetype .. ".template"
 	local num_lines = vim.api.nvim_buf_line_count(0)
 	if num_lines ~= 1 then
 		vim.notify("not empty file", vim.log.levels.INFO, {})
@@ -57,7 +56,7 @@ function M.templateEdit(filetype)
 		vim.notify("current buffer need valid filetype", vim.log.levels.INFO, {})
 		return
 	end
-	local abspath = TEMPLATE_FOLDER .. "/" .. filetype .. ".template"
+	local abspath = TEMPLATE_FOLDER .. filetype .. ".template"
 	vim.cmd(":e " .. abspath)
 end
 
