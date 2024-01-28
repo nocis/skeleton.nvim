@@ -4,22 +4,19 @@ local TEMPLATE_FOLDER = "~/.config/nvim-templates/"
 
 local function loadTemplate(templatePath)
 	vim.notify(templatePath, vim.log.levels.INFO, {})
+	local expandPath = vim.fn.expand(templatePathe)
 	local resolvedPath
 
-	if vim.fn.getftype(templatePath) == "link" then
-		resolvedPath = vim.fn.resolve(templatePath)
+	if vim.fn.getftype(expandPath) == "link" then
+		resolvedPath = vim.fn.resolve(expandPath)
 	else
-		resolvedPath = templatePath
+		resolvedPath = expandPath
 	end
 
 	local fh = io.open(resolvedPath)
 	local lines = {}
 	if fh == nil then
-		return vim.notify(
-			"cannot open file: " .. vim.fn.getftype(templatePath) .. resolvedPath,
-			vim.log.levels.INFO,
-			{}
-		)
+		return vim.notify("cannot open file: " .. vim.fn.getftype(expandPath) .. resolvedPath, vim.log.levels.INFO, {})
 	end
 
 	for line in fh:lines() do
