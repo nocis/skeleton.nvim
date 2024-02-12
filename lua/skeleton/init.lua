@@ -63,6 +63,8 @@ function M.templateEdit(ext)
 		return
 	end
 	local abspath = TEMPLATE_FOLDER .. "__" .. ext .. ".template"
+	vim.notify(abspath, vim.log.levels.INFO, {})
+	vim.notify(ext, vim.log.levels.INFO, {})
 	vim.cmd(":e " .. abspath)
 end
 
