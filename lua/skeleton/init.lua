@@ -32,13 +32,13 @@ local function loadTemplate(templatePath)
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
 end
 
-function M.runOnCurrentBuffer(filetype)
-	if filetype == nil or filetype == "" then
-		vim.notify("current buffer need valid filetype", vim.log.levels.INFO, {})
+function M.runOnCurrentBuffer(ext)
+	if ext == nil or ext == "" then
+		vim.notify("current buffer need valid extension", vim.log.levels.INFO, {})
 		return
 	end
 
-	local abspath = TEMPLATE_FOLDER .. filetype .. ".template"
+	local abspath = TEMPLATE_FOLDER .. "__" .. ext .. ".template"
 	local num_lines = vim.api.nvim_buf_line_count(0)
 	if num_lines ~= 1 then
 		vim.notify("not empty file", vim.log.levels.INFO, {})
@@ -53,16 +53,16 @@ function M.runOnCurrentBuffer(filetype)
 	if vim.fn.filereadable(abspath) then
 		loadTemplate(abspath)
 	else
-		M.templateEdit(filetype)
+		M.templateEdit(ext)
 	end
 end
 
-function M.templateEdit(filetype)
-	if filetype == nil or filetype == "" then
-		vim.notify("current buffer need valid filetype", vim.log.levels.INFO, {})
+function M.templateEdit(ext)
+	if ext == nil or ext == "" then
+		vim.notify("current buffer need valid extension", vim.log.levels.INFO, {})
 		return
 	end
-	local abspath = TEMPLATE_FOLDER .. filetype .. ".template"
+	local abspath = TEMPLATE_FOLDER .. "__" .. ext .. ".template"
 	vim.cmd(":e " .. abspath)
 end
 
