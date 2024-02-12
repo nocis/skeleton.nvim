@@ -1,6 +1,7 @@
 vim.filetype.add({
   pattern = {
     ['.clang-format'] = 'clang-format',
+    ['CMakeLists.txt'] = 'cmakelists',
   }
 })
 
