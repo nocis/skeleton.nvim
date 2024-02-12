@@ -1,10 +1,3 @@
-vim.filetype.add({
-  pattern = {
-    ['.clang-format'] = 'clang-format',
-    ['CMakeLists.txt'] = 'cmakelists',
-  }
-})
-
 vim.api.nvim_create_user_command("TemplateInit", function(opts)
 	local filetype = vim.filetype.match({ buf = 0 })
 
